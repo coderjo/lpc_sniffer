@@ -1,17 +1,28 @@
-set_io lpc_clock 112
-set_io lpc_ad[0] 113
-set_io lpc_ad[1] 114
-set_io lpc_ad[2] 115
-set_io lpc_ad[3] 116
-set_io lpc_frame 117
-set_io lpc_reset 118
-set_io ext_clock 21
-set_io fsdi 9
-set_io fsclk 8
-set_io fscts 4
-set_io fsdo 7
-set_io lpc_clock_led 99
-set_io lpc_frame_led 98
-set_io lpc_reset_led 97
-set_io valid_lpc_output_led 96
-set_io overflow_led 95
+# LPC signals
+set_io lpc_clock 2 # 6A
+set_io lpc_frame 46 # 0A
+set_io lpc_reset 44 # 3B
+set_io lpc_ad[0] 47 # 2A
+set_io lpc_ad[1] 45 # 5B
+set_io lpc_ad[2] 48 # 4A
+set_io lpc_ad[3] 3 # 9B
+
+set_io ext_clock 37 # 45A_G1 (jumper to ICE_CLK, remove J51)
+
+# FTDI
+set_io fsdi 23 # 37A
+set_io fsclk 25 # 36B
+set_io fscts 26 # 39A
+set_io fsdo 27 # 38B
+
+# LEDs
+set_io lpc_clock_led 40 # LED_GREEN
+set_io lpc_frame_led 39 # LED_BLUE
+set_io lpc_reset_led 41 # LED_RED
+set_io valid_lpc_output_led 36 # 48B
+set_io overflow_led 42 # 51A
+
+# LED_BLUE is pin 39
+# LED_GREEN is pin 40
+# LED_RED is pin 41
+# need to add two more outputs for LEDs

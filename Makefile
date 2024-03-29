@@ -1,8 +1,8 @@
 
 NAME=top
 DEPS=buffer.v bufferdomain.v lpc.v mem2serial.v ringbuffer.v power_on_reset.v trigger_led.v pll.v ftdi.v
-FPGA_ARCH=--hx1k
-FPGA_PACKAGE=tq144
+FPGA_ARCH=--up5k
+FPGA_PACKAGE=sg48
 
 $(NAME).bin: $(NAME).pcf $(NAME).v $(DEPS)
 	yosys -p "synth_ice40 -json $(NAME).json" $(NAME).v $(DEPS)
