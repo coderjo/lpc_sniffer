@@ -3,6 +3,8 @@ lpc_sniffer.bin
 top.blif
 top.ex
 top.txt
+top.json
+top.asc
 *.sw?
 *.vcd
 *.vvp

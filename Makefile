@@ -3,9 +3,9 @@ NAME=top
 DEPS=buffer.v bufferdomain.v lpc.v mem2serial.v ringbuffer.v power_on_reset.v trigger_led.v pll.v ftdi.v
 
 $(NAME).bin: $(NAME).pcf $(NAME).v $(DEPS)
-	yosys -p "synth_ice40 -blif $(NAME).blif" $(NAME).v $(DEPS)
-	arachne-pnr -d 1k -p $(NAME).pcf $(NAME).blif -o $(NAME).txt
-	icepack $(NAME).txt $(NAME).bin
+	yosys -p "synth_ice40 -json $(NAME).json" $(NAME).v $(DEPS)
+	nextpnr-ice40 --hx1k --package tq144 --json $(NAME).json --pcf $(NAME).pcf --asc $(NAME).asc
+	icepack $(NAME).asc $(NAME).bin
 	cp $(NAME).bin lpc_sniffer.bin
 
 buffer.vvp: buffer_tb.v buffer.v
@@ -40,7 +40,7 @@ test/helloonechar.bin: test/helloonechar.v uart_tx.v power_on_reset.v test/hello
 	icepack test/helloonechar.txt test/helloonechar.bin
 
 clean:
-	rm -f top.blif top.txt top.ex top.bin
+	rm -f top.blif top.txt top.json top.asc top.ex top.bin
 
 test: buffer.vvp mem2serial.vvp ringbuffer.vvp uart_tx_tb.vvp top_tb.vpp test/helloonechar_tb.vvp test/helloworld_tb.vvp
 
